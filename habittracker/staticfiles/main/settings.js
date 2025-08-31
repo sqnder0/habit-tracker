@@ -26,7 +26,7 @@ habitList.addEventListener("click", (event) => {
     const description = form.querySelector(`#habit_${habitId}_description`).value;
     const csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
 
-    fetch("/update_habit/", {
+    fetch("/habittracker/update_habit/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ habitList.addEventListener("click", (event) => {
     const habitId = form.querySelector(".habit_id").id;
     const csrfToken = form.querySelector("[name=csrfmiddlewaretoken]").value;
 
-    fetch("/delete_habit/", {
+    fetch("/habittracker/delete_habit/", {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken },
       body: JSON.stringify({ habit_id: habitId }),
@@ -85,7 +85,7 @@ createBtn.addEventListener("click", (event) => {
   const description = createForm.querySelector("#habit_description").value;
   const csrfToken = createForm.querySelector("[name=csrfmiddlewaretoken]").value;
 
-  fetch("/create_habit/", {
+  fetch("/habittracker/create_habit/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

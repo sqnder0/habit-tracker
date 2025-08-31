@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,11 +131,33 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = reverse_lazy("index")
+LOGOUT_REDIRECT_URL = reverse_lazy("index")
 
 FORCE_SCRIPT_NAME = "/habittracker"
 
 # CSRF cookies for subpath
-CSRF_COOKIE_PATH = "/habittracker"
-SESSION_COOKIE_PATH = "/habittracker"
+CSRF_TRUSTED_ORIGINS = ["https://sqnder.hackclub.app"]
+CSRF_COOKIE_PATH = "/habittracker/"
+SESSION_COOKIE_PATH = "/habittracker/"
+
+
+# Logging
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "django_errors.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}

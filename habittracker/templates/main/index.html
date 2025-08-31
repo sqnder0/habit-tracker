@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top d-flex flex-column pb-0">
   <div class="container position-relative p-2">
     <div class="w-100 d-flex justify-content-around">
-      <a href="/day/{{previous_day}}" class="text-black fs-3">
+      <a href="/habittracker/day/{{previous_day}}" class="text-black fs-3">
         <i class="bi bi-arrow-left-short"></i>
       </a>
       <span class="navbar-brand mb-0 h1 fs-3">Daily tasks {{ date }}</span>
@@ -11,7 +11,7 @@
         <i class="bi bi-arrow-right-short"></i>
       </a>
       {% else %}
-      <a href="/day/{{next_day}}" class="text-black fs-3">
+      <a href="/habittracker/day/{{next_day}}" class="text-black fs-3">
         <i class="bi bi-arrow-right-short"></i>
       </a>
       {% endif %}
