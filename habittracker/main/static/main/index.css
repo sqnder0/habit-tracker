@@ -1,0 +1,18 @@
+@media (min-width: 1199.98px) {
+  body .w-xl-50 {
+    width: 50% !important;
+  }
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.time-input {
+  width: fit-content;
+  max-width: fit-content;
+}
+.time-input::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}

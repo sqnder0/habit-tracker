@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block title %}Settings{% endblock %} {%block content %} {% load static %}
+<div class="container">
+  <div class="border-bottom border-2 mb-3 d-flex align-items-center">
+    <h1 class="pt-3">{{ user.username }}</h1>
+    <a class="fs-1 text-black ms-auto" href="{% url 'index' %}"><i class="bi bi-house-door"></i></a>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Your habits:</h2>
+      <div id="habit_list">
+        {% for habit in habits %}
+        <div class="bg-secondary-subtle mb-2">
+          <div class="d-flex px-2 align-items-center habit_info">
+            <span><span class="habit_name">{{habit.habit_name}}</span> ({{habit.habit_streak}}): <span class="habit_time">{{ habit.timestamp|time:"h:i A" }}</span></span>
+            <button class="btn ms-auto edit_habit"><i class="bi bi-pencil-fill"></i></button>
+          </div>
+          <form class="edit_form p-3 d-none">
+            {% csrf_token %}
+            <input class="d-none habit_id" id="{{habit.id}}" />
+            <div class="d-flex mb-3">
+              <input class="form-control w-50" type="text" value="{{habit.habit_name}}" id="habit_{{ habit.id }}_name" />
+              <input class="form-control time-input" type="time" value="{{ habit.timestamp|time:"H:i" }}" id="habit_{{ habit.id }}_time" />
+            </div>
+            <textarea class="form-control mb-3" id="habit_{{habit.id}}_description">{{habit.habit_description}}</textarea>
+            <div class="d-flex">
+              <button class="save_habit btn btn-success"><i class="bi bi-floppy"></i> Save</button>
+              <button class="delete_habit btn btn-danger ms-auto"><i class="bi bi-trash"></i> Delete</button>
+            </div>
+          </form>
+        </div>
+        {% endfor%}
+      </div>
+      <div class="">
+        <button class="btn btn-outline-primary w-100 text-center toggle_create_habit"><i class="bi bi-plus-square-dotted"></i> Create new habit</button>
+        <form class="p-3 bg-secondary rounded-2 d-none create_habit_form">
+          <h2 class="text-white">New habit</h2>
+          {% csrf_token %}
+          <div class="d-flex mb-3">
+            <input class="form-control w-50 me-1" type="text" placeholder="Habit name" id="habit_name" />
+            <input class="form-control time-input" type="time" value="12:00" id="habit_time" />
+          </div>
+          <textarea class="form-control mb-3" placeholder="Description for your habit..." id="habit_description"></textarea>
+          <div class="d-flex">
+            <button class="create_habit btn btn-primary"><i class="bi bi-plus"></i> Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+      <h2>Statistics:</h2>
+      <ul>
+        {% for stat in stats%}
+        <li><span class="fw-bold fs-5">{{stat.name}}</span>: {{stat.value}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{% static '/main/settings.js' %}"></script>
+{% endblock %}

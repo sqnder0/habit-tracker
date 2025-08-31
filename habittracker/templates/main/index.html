@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top d-flex flex-column pb-0">
+  <div class="container position-relative p-2">
+    <div class="w-100 d-flex justify-content-around">
+      <a href="/day/{{previous_day}}" class="text-black fs-3">
+        <i class="bi bi-arrow-left-short"></i>
+      </a>
+      <span class="navbar-brand mb-0 h1 fs-3">Daily tasks {{ date }}</span>
+      {% if next_day == "#" %}
+      <a class="text-black fs-3 disabled">
+        <i class="bi bi-arrow-right-short"></i>
+      </a>
+      {% else %}
+      <a href="/day/{{next_day}}" class="text-black fs-3">
+        <i class="bi bi-arrow-right-short"></i>
+      </a>
+      {% endif %}
+    </div>
+    <a href="{% url 'settings' %}" class="position-absolute end-0 text-black fs-3">
+      <i class="bi bi-gear"></i>
+    </a>
+  </div>
+  <hr class="border-bottom border-black border-1 container m-0" />
+</nav>
+<div class="container mt-3">
+  <div class="d-flex justify-content-center align-items-center flex-column w-100">
+    {% for day in habits %}
+    <form action="{% url 'update_day'%}" method="POST" class="w-100 w-xl-50 bg-secondary-subtle mb-3 rounded-2 p-3">
+      {% csrf_token %}
+      <input class="d-none" id="{{day.id}}" value="{{day.id}}" name="day_id" />
+      <div class="d-flex justify-content-between border-bott om border-secondary">
+        <h3>{{day.habit.habit_name}}</h3>
+        <h4>{{ day.habit.timestamp|time:"h:i A" }}</h4>
+      </div>
+      <p>{{ day.habit.habit_description }}</p>
+      <div class="mb-3">
+        <label for="notes_{{day.id}}" class="form-label">Notes:</label>
+        <textarea class="form-control w-100" id="notes_{{day.id}}" name="notes">{{day.notes}}</textarea>
+      </div>
+      <div class="d-flex w-100">
+        {% if day.done %}
+        <button class="btn btn-danger ms-auto" type="submit">Mark as not done</button>
+        {% else %}
+        <button class="btn btn-success ms-auto" type="submit">Mark as done</button>
+        {%endif%}
+      </div>
+    </form>
+    {% endfor %} {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,2 @@
+(A) More detailed title (date display)
+(B) Add more javascript
