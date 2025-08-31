@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% load widget_tweaks %} {% block title %} Log in {% endblock %} {%block content%}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <form method="post" class="w-50">
+    <h2>Log In</h2>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_username" class="form-label">Username</label>
+      {{ form.username|add_class:"form-control" }}
+    </div>
+    <div class="mb-3">
+      <label for="id_username" class="form-label">Password</label>
+      {{ form.password|add_class:"form-control" }}
+    </div>
+    <p class="mt-0 fw-light">Please sign up if you don't have an account.</p>
+    <div class="d-flex">
+      <button type="submit" class="btn btn-primary me-3">Log In</button>
+      <a href="{% url 'signup' %}" class="btn btn-secondary">Sign up</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
