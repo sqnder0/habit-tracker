@@ -16,3 +16,29 @@
   display: none;
   -webkit-appearance: none;
 }
+
+.text-orange {
+  color: #ff8000 !important;
+}
+
+.expand {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.rotate-270 {
+  transform: rotate(-90deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.expandable {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.show {
+  max-height: 300px;
+  opacity: 1;
+}

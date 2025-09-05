@@ -5,6 +5,7 @@ A powerful and intuitive web-based habit tracking application built with Django.
 ## 🌟 Features
 
 ### Core Functionality
+
 - **Daily Habit Tracking**: Mark habits as complete or incomplete for each day
 - **Streak Calculation**: Automatic calculation of current habit streaks to maintain motivation
 - **User Authentication**: Secure user registration, login, and personalized habit management
@@ -13,6 +14,7 @@ A powerful and intuitive web-based habit tracking application built with Django.
 - **Responsive Design**: Clean, modern interface that works on desktop and mobile devices
 
 ### Advanced Features
+
 - **Custom Habit Creation**: Create habits with personalized names, descriptions, and preferred completion times
 - **Progress Visualization**: Track your consistency and improvement over time
 - **User-Specific Data**: Each user has their own private set of habits and tracking data
@@ -22,19 +24,23 @@ A powerful and intuitive web-based habit tracking application built with Django.
 ## 📖 Usage Guide
 
 ### Getting Started
+
 1. **Sign Up**: Create a new account or log in with existing credentials
 2. **Create Habits**: Click on the gear icon and add your first habit with a name, description, and preferred time
 3. **Daily Tracking**: Check off habits as you complete them each day
 4. **Monitor Progress**: Watch your streaks grow and track your consistency
 
 ### Managing Habits
+
 - **Add New Habits**: Use the interface to create habits with custom descriptions
 - **Edit Habits**: Modify habit details, descriptions, and completion times
 - **Delete Habits**: Remove habits you no longer want to track
 - **View History**: Navigate to previous dates to see your past performance
 
 ### Understanding Streaks
+
 The streak system calculates consecutive days where you've completed a habit:
+
 - Streaks include today if the habit is marked complete
 - If today isn't complete, the streak counts from yesterday backwards
 - Missing a day breaks the streak, starting fresh from the next completion
@@ -87,6 +93,7 @@ We welcome contributions! Here's how you can help:
 7. **Open a Pull Request**: Describe your changes and their benefits
 
 ### Development Guidelines
+
 - Follow PEP 8 Python style guidelines
 - Write clear, descriptive commit messages
 - Add tests for new functionality
@@ -99,6 +106,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🆘 Support
 
 If you encounter any issues or have questions:
+
 - Check the existing [Issues](https://github.com/sqnder0/habit-tracker/issues)
 - Create a new issue with detailed information
 - Include steps to reproduce any bugs
@@ -106,6 +114,7 @@ If you encounter any issues or have questions:
 ## 🔮 Future Enhancements
 
 Planned features and improvements:
+
 - Habit categories and tags
 - Advanced analytics and charts
 - Habit sharing and social features

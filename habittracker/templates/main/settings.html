@@ -5,7 +5,7 @@
     <a class="fs-1 text-black ms-auto" href="{% url 'index' %}"><i class="bi bi-house-door"></i></a>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-sm me-5 mb-5">
       <h2>Your habits:</h2>
       <div id="habit_list">
         {% for habit in habits %}
@@ -46,13 +46,16 @@
         </form>
       </div>
     </div>
-    <div class="col">
+    <div class="col-12 col-sm">
       <h2>Statistics:</h2>
-      <ul>
+      <div class="row">
         {% for stat in stats%}
-        <li><span class="fw-bold fs-5">{{stat.name}}</span>: {{stat.value}}</li>
+        <div class="bg-primary-subtle rounded-4 pb-2 pt-1 px- m-1 col-md-7 col-lg-6 col-xl-4">
+          <span class="fw-bold text-secondary">{{stat.name}}</span>
+          <p class="fs-4 fw-bold mb-0">{{stat.value}}</p>
+        </div>
         {% endfor %}
-      </ul>
+      </div>
     </div>
   </div>
 </div>
