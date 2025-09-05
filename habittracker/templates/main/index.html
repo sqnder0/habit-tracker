@@ -1,17 +1,19 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top d-flex flex-column pb-0">
   <div class="container position-relative p-2">
     <div class="w-100 d-flex justify-content-around">
-      <a href="/habittracker/day/{{previous_day}}" class="text-black fs-3">
+      <a href="/habittracker/day/{{previous_day}}" class="text-black fs-3 text-decoration-none d-flex align-items-center gap-1">
         <i class="bi bi-arrow-left-short"></i>
+        <span class="fs-6 text-center">{{previous_day}}</span>
       </a>
-      <span class="navbar-brand mb-0 h1 fs-3">Daily tasks {{ date }}</span>
+      <span class="navbar-brand mb-0 h1 fs-3">{% if date %}{{ date }}{% else %}Today{% endif %}</span>
       {% if next_day == "#" %}
-      <a class="text-black fs-3 disabled">
+      <a class="text-black fs-3 text-decoration-none d-flex align-items-center disabled">
         <i class="bi bi-arrow-right-short"></i>
       </a>
       {% else %}
-      <a href="/habittracker/day/{{next_day}}" class="text-black fs-3">
+      <a href="/habittracker/day/{{ next_day }}" class="text-black fs-3 text-decoration-none d-flex align-items-center gap-1">
+        <span class="fs-6">{{ next_day }}</span>
         <i class="bi bi-arrow-right-short"></i>
       </a>
       {% endif %}
@@ -28,23 +30,31 @@
     <form action="{% url 'update_day'%}" method="POST" class="w-100 w-xl-50 bg-secondary-subtle mb-3 rounded-2 p-3">
       {% csrf_token %}
       <input class="d-none" id="{{day.id}}" value="{{day.id}}" name="day_id" />
-      <div class="d-flex justify-content-between border-bott om border-secondary">
-        <h3>{{day.habit.habit_name}}</h3>
-        <h4>{{ day.habit.timestamp|time:"h:i A" }}</h4>
+      <div class="d-flex justify-content-between align-items-center border-secondary">
+        <h4>{% if day.habit.habit_streak > 1 %}<i class="bi bi-fire text-orange"></i>{% endif %} {{day.habit.habit_name}}</h4>
+        <div class="d-flex align-items-center">
+          <p class="mb-0">{{ day.habit.timestamp|time:"h:i A" }}</p>
+          <i class="bi bi-chevron-left ms-3 expand expand-habit"></i>
+        </div>
       </div>
-      <p>{{ day.habit.habit_description }}</p>
-      <div class="mb-3">
-        <label for="notes_{{day.id}}" class="form-label">Notes:</label>
-        <textarea class="form-control w-100" id="notes_{{day.id}}" name="notes">{{day.notes}}</textarea>
-      </div>
-      <div class="d-flex w-100">
-        {% if day.done %}
-        <button class="btn btn-danger ms-auto" type="submit">Mark as not done</button>
-        {% else %}
-        <button class="btn btn-success ms-auto" type="submit">Mark as done</button>
-        {%endif%}
+      <div class="d-none expandable">
+        <p>{{ day.habit.habit_description }}</p>
+        <div class="mb-3">
+          <label for="notes_{{day.id}}" class="form-label">Notes:</label>
+          <textarea class="form-control w-100" id="notes_{{day.id}}" name="notes">{{day.notes}}</textarea>
+        </div>
+        <div class="d-flex w-100">
+          {% if day.done %}
+          <button class="btn btn-danger ms-auto" type="submit">Mark as not done</button>
+          {% else %}
+          <button class="btn btn-success ms-auto" type="submit">Mark as done</button>
+          {% endif %}
+        </div>
       </div>
     </form>
-    {% endfor %} {% endblock %}
+    {% endfor %}
   </div>
 </div>
+{% endblock %} {% block scripts %}
+<script src="{% static '/main/index.js' %}"></script>
+{% endblock %}
